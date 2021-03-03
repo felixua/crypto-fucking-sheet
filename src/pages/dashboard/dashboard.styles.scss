@@ -1,0 +1,31 @@
+body {
+    font-size: 0.875rem !important;
+}
+
+.feather {
+    width: 16px !important;
+    height: 16px !important;
+    vertical-align: text-bottom !important;
+}
+
+.main {
+    margin-left: auto !important;
+    z-index: 100 !important; /* Behind the navbar */
+    padding: 48px 0 0 !important; /* Height of navbar */
+}
+
+@media (max-width: 576px) {
+    .main-sm {
+        margin-left: auto !important;
+        z-index: 100 !important; /* Behind the navbar */
+        padding: 130px 0 0 !important; /* Height of navbar */
+    }
+}
+
+@media (max-width: 768px) { 
+    .main-sm {
+        margin-left: auto !important;
+        z-index: 100 !important; /* Behind the navbar */
+        padding: 130px 0 0 !important; /* Height of navbar */
+    }
+}
