@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Nav, Navbar, Form } from 'react-bootstrap';
+import { auth } from '../../firebase/firebase.utils';
 
 import './navigation-bar.styles.scss';
 
@@ -11,7 +12,7 @@ const NavigationBar = () => (
         <Form.Control as="input" type="text" className="form-control form-control-dark w-100" placeholder="Search" aria-label="Search" />
         <Nav className="navbar-nav px-3">
             <Nav.Item className="text-nowrap">
-                <Nav.Link href="#">Sign Out</Nav.Link>
+                <Nav.Link onClick={() => auth.signOut()}>Sign Out</Nav.Link>
             </Nav.Item>
         </Nav>
     </Navbar>

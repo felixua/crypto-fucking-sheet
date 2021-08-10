@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
 
 //import './dashboard';
 import { Container, Row, Col} from 'react-bootstrap';
@@ -26,4 +27,4 @@ const Dashboard = () => (
     </Fragment>
 );
 
-export default Dashboard;
+export default withRouter(Dashboard);
