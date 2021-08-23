@@ -1,0 +1,31 @@
+data structure
+
+
+users
+  email
+  dispayName
+  createdAt
+
+coins
+  user
+  coin
+  displayName
+
+wallets
+  user
+  wallet
+  displayName
+
+transactions
+  user
+  coin
+  transactionType: {1 - Buy, -1 - Comission, 0 - Send/Swap, 2 - Extraction, 3 - Interes}
+  dateTime
+  amount
+  priceARS
+  spendARS
+  priceUSD
+  spendUSD
+  wallet
+  comments
+

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FaExchangeAlt, FaArrowUp, FaPercent} from 'react-icons/fa';
+import { FaBtc, FaExchangeAlt, FaArrowUp, FaPercent} from 'react-icons/fa';
 import {AiOutlineDelete} from 'react-icons/ai';
 import { Container, ButtonToolbar, ButtonGroup, Button } from 'react-bootstrap';
 
@@ -12,6 +12,7 @@ const TransactionList = () => (
             <h2>Section title</h2>
             <ButtonToolbar class="mb-2 mb-md-0">
                 <ButtonGroup>
+                    <Button variant="light" ><FaBtc /></Button>
                     <Button variant="light" ><FaExchangeAlt /></Button>
                     <Button variant="light" ><FaArrowUp /></Button>
                     <Button variant="light" ><FaPercent /></Button>

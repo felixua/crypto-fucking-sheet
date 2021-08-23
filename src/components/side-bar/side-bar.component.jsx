@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { FaBitcoin, FaEthereum } from 'react-icons/fa';
-import {Container} from 'react-bootstrap';
+import { FiPlus } from 'react-icons/fi';
+import {Container, Button} from 'react-bootstrap';
+import SideBarItem from '../side-bar-item/side-bar-item.component';
 
 import './side-bar.styles.scss';
 
@@ -9,17 +10,10 @@ const SideBar = () => (
     <Container id="sidebarMenu" as="nav">
         <Container className="position-sticky pt-3">
             <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        <FaBitcoin className="feather" />
-                        Bitcoin
-                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <FaEthereum className="feather" />
-                        Ethereum
-                    </a>
+                <SideBarItem id="BTC" coin="BTC" displayName="Bitcoin" primary={true} />
+                <SideBarItem id="ETH" coin="ETH" displayName="Ethereum" primary={false} />                
+                <li>
+                    <Button variant="light" ><FiPlus /></Button>
                 </li>
             </ul>
         </Container>

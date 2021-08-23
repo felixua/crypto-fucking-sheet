@@ -1,0 +1,15 @@
+tmp
+
+
+<li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">                    
+        <Badge pill bg="primary">BTC</Badge>
+        Bitcoin
+     </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="#">
+        <Badge pill bg="light" text="dark">ETH</Badge>
+        Ethereum
+    </a>
+</li>
