@@ -30,25 +30,6 @@
     overflow-y: auto !important; /* Scrollable contents if viewport is shorter than content. */
 }
 
-.sidebar .nav-link {
-    font-weight: 500 !important;
-    color: #333 !important;
-}
-
-.sidebar .nav-link .feather {
-    margin-right: 4px !important;
-    color: #727272 !important;
-}
-
-.sidebar .nav-link.active {
-    color: #007bff !important;
-}
-
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-    color: inherit !important;
-}
-
 .sidebar-heading {
     font-size: 0.75rem !important;
     text-transform: uppercase !important;
