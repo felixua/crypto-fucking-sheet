@@ -70,7 +70,7 @@ class SignIn extends React.Component {
                         <Button className="btn btn-lg btn-primary" size="sm" type="submit">Sign in</Button>
                         <Button className="btn btn-lg btn-primary" size="sm" onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google</Button>
                         <p>Also you can <Link to="/sign-up">sign up here</Link></p>
-                        <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+                        <p className="mt-5 mb-3 text-muted">&copy; 2021</p>
                     </Form>
                 </Container>
             </Container>

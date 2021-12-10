@@ -38,6 +38,18 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     return userRef;
 };
 
+export const convertUserCoinsSnapshotToMap = coins => {
+    return coins.docs.map(doc => {
+        const {user, coin, displayName} = doc.data();
+
+        return {
+            user: user,
+            coin: coin,
+            displayName: displayName
+        };
+    });
+};
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 

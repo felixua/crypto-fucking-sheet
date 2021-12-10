@@ -1,12 +1,14 @@
 import React from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import Dashboard from './pages/dashboard/dashboard.component';
 import SignIn from './pages/sign-in/sign-in.component';
 import SignUp from './pages/sign-up/sign-up.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
+import { selectCurrentUser } from './redux/user/user.selectors';
 
 
 import './App.scss';
@@ -32,17 +34,6 @@ class App extends React.Component {
       }
 
       setCurrentUser(userAuth);
-    
-    /*  
-      
-      if (this.state.currentUser === null) {
-        this.props.history.push("/sign-in");
-      } else {
-        this.props.history.push("/");
-      }
-
-    */
-
     });
   }
 
@@ -75,12 +66,17 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({user}) => ({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)) 
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(
+  connect(
+    mapStateToProps, 
+    mapDispatchToProps
+  )(App)
+);
