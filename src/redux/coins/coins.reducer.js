@@ -1,6 +1,7 @@
 import CoinsActionTypes from './coins.types';
 
 const INITIAL_STATE = {
+    showRemoveButton: false,
     userCoins: null,
     errorMessage: undefined
 }
@@ -27,7 +28,21 @@ const coinsReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 errorMessage: action.payload
-            }               
+            }   
+        case CoinsActionTypes.SHOW_REMOVE_BUTTON:
+            return {
+                ...state,
+                showRemoveButton: action.payload
+            }
+        case CoinsActionTypes.REMOVE_COINS_START:
+            return state;
+        case CoinsActionTypes.REMOVE_COINS_SUCCESS:
+            return state;
+        case CoinsActionTypes.REMOVE_COINS_FAILURE:
+            return {
+                ...state,
+                errorMessage: action.payload
+            }                              
         default:
             return state;    
     }

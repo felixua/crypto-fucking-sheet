@@ -58,8 +58,8 @@ class CryptoCollectionAddItem extends React.Component {
         const {show, target, ref, inputCoinName, inputCoinDescription} = this.state;
         
         return (
-            <div ref={ref}>
-                <Button variant="light" onClick={this.handleClick}><FiPlus /></Button>
+            <div ref={ref} className="overlay-add-dialog">
+                <Button variant="light" className="add-item-btn" onClick={this.handleClick}><FiPlus /></Button>
                 <Overlay
                     show={show}
                     target={target}

@@ -1,4 +1,6 @@
 .sidebar .nav-link {
+    display: inline-block !important;
+    padding-left: 0 !important;
     font-weight: 500 !important;
     color: #333 !important;
 }
@@ -15,4 +17,11 @@
 .sidebar .nav-link:hover .feather,
 .sidebar .nav-link.active .feather {
     color: inherit !important;
+}
+
+.sidebar .remove-link {
+    display: inline-block !important;
+    margin-right: 4px !important; 
+    cursor: pointer !important; 
+    color: #007bff !important;
 }

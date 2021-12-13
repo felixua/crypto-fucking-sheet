@@ -3,8 +3,16 @@ input[type="text"] {
     box-sizing: border-box !important;
     height: 30px !important;
 }
+.add-item-btn {
+    margin: 2px !important;
+    padding: 6px 3px !important;
+}
 
 .add-btn {
-    margin: 5px 0px 5px auto !important;
+    margin: 2px 0px 5px auto !important;
     display: block !important;
+}
+
+.overlay-add-dialog {
+    display: inline-block !important;
 }

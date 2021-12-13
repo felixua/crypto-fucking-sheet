@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { FiPlus } from 'react-icons/fi';
-import {Container, Button} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import CryptoCollection from '../crypto-collection/crypto-collection.component';
 import CryptoCollectionAddItem from '../crypto-collection-add-item/crypto-collection-add-item.component';
+import CryptoCollectionRemoveItem from '../crypto-collection-remove-item/crypto-collection-remove-item.component';
 
 import './side-bar.styles.scss';
 
@@ -14,6 +14,7 @@ const SideBar = () => (
                 <CryptoCollection/>               
                 <li>
                    <CryptoCollectionAddItem/> 
+                   <CryptoCollectionRemoveItem/>
                 </li>
             </ul>
         </Container>

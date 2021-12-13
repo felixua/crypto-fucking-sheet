@@ -7,7 +7,8 @@ import { fetchCoinsStartAsync } from '../../redux/coins/coins.actions';
 
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { selectUserCoins } from '../../redux/coins/coins.selectors';
-
+import { selectUserCoinsShowRemove } from '../../redux/coins/coins.selectors'
+ 
 class CryptoCollection extends React.Component {
     componentDidMount() {
         const { fetchCoinsStartAsync, currentUser } = this.props;
@@ -16,12 +17,13 @@ class CryptoCollection extends React.Component {
     }
 
     render() {
-        const { userCoins } = this.props;
+        const { userCoins, showRemoveButton } = this.props;
 
         return(
             <>
                 {userCoins !== null ? userCoins.map(({ id, coin, displayName, ...otherCoinProps }) => (
-                    <CryptoCollectionItem key={coin} id={id} coin={coin} displayName={displayName} primary={true} />
+                    <CryptoCollectionItem key={coin} id={id} coin={coin} displayName={displayName} primary={true} 
+                                          showRemoveButton = {showRemoveButton}/>
                 )) : null}
             </>
         );
@@ -34,7 +36,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
-    userCoins: selectUserCoins
+    userCoins: selectUserCoins,
+    showRemoveButton: selectUserCoinsShowRemove
 });
 
 export default connect(

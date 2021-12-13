@@ -49,30 +49,74 @@ export const addCoinsStartAsync = (currentUser, coin, displayName) => {
     return dispatch => {
         const coinsRef = firestore.collection("coins");
 
-        coinsRef.where("user", "==", currentUser.email);
-        coinsRef.where("coin", "==", coin);
-
-        const snapshot = coinsRef.get();
-
-        if (!snapshot.exists) {
-            dispatch(addCoinsStart());
-            try {
-                coinsRef.add({
-                    user: currentUser.email,
-                    coin: coin,
-                    displayName: displayName
-                })
-                .then(snapshot => {
-                    dispatch(addCoinsSuccess());
-                    dispatch(showToastMessage(displayName+" "+"added succefully!"));
-                    dispatch(fetchCoinsStartAsync(currentUser));
-                });
-            } catch (error) {
-                console.log('error catching coins', error.message);
-                dispatch(addCoinsFailure());
-                dispatch(showToastMessage("Error when add new coin: "+displayName));
-            }    
-        }
+        coinsRef
+            .where("user", "==", currentUser.email)
+            .where("coin", "==", coin)
+            .get().then( snapshot => {
+                if (snapshot.empty) {
+                    dispatch(addCoinsStart());
+                    try {
+                        coinsRef.add({
+                            user: currentUser.email,
+                            coin: coin,
+                            displayName: displayName
+                        })
+                        .then(snapshot => {
+                            dispatch(addCoinsSuccess());
+                            dispatch(showToastMessage(displayName + " " + "added succefully!"));
+                            dispatch(fetchCoinsStartAsync(currentUser));
+                        });
+                    } catch (error) {
+                        console.log('error catching coins', error.message);
+                        dispatch(addCoinsFailure(error.message));
+                        dispatch(showToastMessage("Error when add new coin: " + displayName));
+                    }    
+                } else {
+                    dispatch(showToastMessage("Coin is already listed: " + displayName));
+                }    
+            }); 
     }    
 };
+
+export const removeCoinsStart = () => ({
+    type: CoinsActionTypes.REMOVE_COINS_START
+});
+
+export const removeCoinsSuccess = () => ({
+    type: CoinsActionTypes.REMOVE_COINS_SUCCESS
+});
+
+export const removeCoinsFailure = errorMessage => ({
+    type: CoinsActionTypes.REMOVE_COINS_FAILURE,
+    payload: errorMessage
+});
+
+export const removeCoinsStartAsync = (currentUser, coin) => {
+    return dispatch => {
+        const coinsRef = firestore.collection("coins")
+            .where("user", "==", currentUser.email)
+            .where("coin", "==", coin)
+            .get().then(snapshot => {
+            dispatch(removeCoinsStart());
+                try { 
+                    snapshot.forEach(doc => {
+                        doc.ref.delete().then(() => {
+                            dispatch(removeCoinsSuccess());
+                            dispatch(showToastMessage(coin + " " + "removed succefully!"));
+                            dispatch(fetchCoinsStartAsync(currentUser)); 
+                        }); 
+                    });    
+                } catch (error) {
+                    console.log("Error delete coin " + coin);
+                    dispatch(removeCoinsFailure(error.message));
+                    dispatch(showToastMessage("Error when remove coin: " + coin));
+                }
+            });    
+    }    
+};
+
+export const showRemoveButton = bShow => ({
+    type: CoinsActionTypes.SHOW_REMOVE_BUTTON,
+    payload: !bShow
+});
 
