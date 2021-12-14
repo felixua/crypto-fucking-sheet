@@ -93,7 +93,7 @@ export const removeCoinsFailure = errorMessage => ({
 
 export const removeCoinsStartAsync = (currentUser, coin) => {
     return dispatch => {
-        const coinsRef = firestore.collection("coins")
+        firestore.collection("coins")
             .where("user", "==", currentUser.email)
             .where("coin", "==", coin)
             .get().then(snapshot => {

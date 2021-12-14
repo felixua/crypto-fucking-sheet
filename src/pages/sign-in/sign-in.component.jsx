@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { Container, Form, Nav, Navbar, FormLabel, Button } from 'react-bootstrap';
+import { Container, Form, Nav, Navbar, Button } from 'react-bootstrap';
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 import { ReactComponent as Logo } from '../../assets/brand/crypto-fucking-logo.svg';
 

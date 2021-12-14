@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectToastMessage } from '../../redux/message/message.selectors';
-import { selectCurrentUser } from '../../redux/user/user.selectors';
 
 //import './dashboard';
 import { Container, Row, Col} from 'react-bootstrap';
