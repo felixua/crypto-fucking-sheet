@@ -2,6 +2,11 @@ import { convertUserCoinsSnapshotToMap, firestore } from '../../firebase/firebas
 import { showToastMessage } from '../../redux/message/message.actions';
 import CoinsActionTypes from './coins.types';
 
+export const selectCoin = coin => ({
+    type: CoinsActionTypes.SELECT_COIN,
+    payload: coin
+});
+
 export const fetchCoinsStart = () => ({
     type: CoinsActionTypes.FETCH_COINS_START
 });
@@ -25,7 +30,8 @@ export const fetchCoinsStartAsync = currentUser => {
           .where("user","==", currentUser.email)
           .get()
           .then(snapshot => {
-              const transformedSnapshot = convertUserCoinsSnapshotToMap(snapshot);
+              let transformedSnapshot = convertUserCoinsSnapshotToMap(snapshot);
+              transformedSnapshot[0].selected = true;
               dispatch(fetchCoinsSuccess(transformedSnapshot));
           })
           .catch(error => dispatch(fetchCoinsFailure(error.message)));
@@ -63,16 +69,16 @@ export const addCoinsStartAsync = (currentUser, coin, displayName) => {
                         })
                         .then(snapshot => {
                             dispatch(addCoinsSuccess());
-                            dispatch(showToastMessage(displayName + " " + "added succefully!"));
+                            dispatch(showToastMessage(`${displayName} added succefully!`));
                             dispatch(fetchCoinsStartAsync(currentUser));
                         });
                     } catch (error) {
                         console.log('error catching coins', error.message);
                         dispatch(addCoinsFailure(error.message));
-                        dispatch(showToastMessage("Error when add new coin: " + displayName));
+                        dispatch(showToastMessage(`Error when add new coin: ${displayName}`));
                     }    
                 } else {
-                    dispatch(showToastMessage("Coin is already listed: " + displayName));
+                    dispatch(showToastMessage(`Coin is already listed: ${displayName}`));
                 }    
             }); 
     }    
@@ -102,14 +108,14 @@ export const removeCoinsStartAsync = (currentUser, coin) => {
                     snapshot.forEach(doc => {
                         doc.ref.delete().then(() => {
                             dispatch(removeCoinsSuccess());
-                            dispatch(showToastMessage(coin + " " + "removed succefully!"));
+                            dispatch(showToastMessage(`${coin} removed succefully!`));
                             dispatch(fetchCoinsStartAsync(currentUser)); 
                         }); 
                     });    
                 } catch (error) {
                     console.log("Error delete coin " + coin);
                     dispatch(removeCoinsFailure(error.message));
-                    dispatch(showToastMessage("Error when remove coin: " + coin));
+                    dispatch(showToastMessage(`Error when remove coin:  ${coin}`));
                 }
             });    
     }    

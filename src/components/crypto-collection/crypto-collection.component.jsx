@@ -21,8 +21,8 @@ class CryptoCollection extends React.Component {
 
         return(
             <>
-                {userCoins !== null ? userCoins.map(({ id, coin, displayName, ...otherCoinProps }) => (
-                    <CryptoCollectionItem key={coin} id={id} coin={coin} displayName={displayName} primary={true} 
+                {userCoins !== null ? userCoins.map(({ id, coin, displayName, selected, ...otherCoinProps }) => (
+                    <CryptoCollectionItem key={coin} id={id} coin={coin} displayName={displayName} primary={selected} 
                                           showRemoveButton = {showRemoveButton}/>
                 )) : null}
             </>

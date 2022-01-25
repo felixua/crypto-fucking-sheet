@@ -8,6 +8,14 @@ const INITIAL_STATE = {
 
 const coinsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case CoinsActionTypes.SELECT_COIN:
+            return{
+                ...state,
+                userCoins: state.userCoins.map(
+                     coin => coin.coin !== action.payload ? 
+                        { ...coin, selected: false } : { ...coin, selected: true } 
+                )
+            };
         case CoinsActionTypes.FETCH_COINS_START:
             return state;    
         case CoinsActionTypes.FETCH_COINS_SUCCESS:

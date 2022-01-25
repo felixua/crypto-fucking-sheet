@@ -45,10 +45,32 @@ export const convertUserCoinsSnapshotToMap = coins => {
         return {
             user: user,
             coin: coin,
-            displayName: displayName
+            displayName: displayName,
+            selected: false
         };
     });
 };
+
+export const convertTransactionListSnapshotToMap = transaction => {
+    return transaction.docs.map(doc => {
+        const {user, coin, transactionType, dateTime, amount, priceARS, spendARS, priceUSD, spendUSD, wallet, comments} = doc.data();
+
+        return {
+            id: doc.id,
+            user: user,
+            coin: coin,
+            transactionType: transactionType,
+            dateTime: dateTime,
+            amount: amount,
+            priceARS: priceARS,
+            spendARS: spendARS,
+            priceUSD: priceUSD,
+            spendUSD: spendUSD,
+            wallet: wallet,
+            comments: comments
+        };
+    })
+}
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();

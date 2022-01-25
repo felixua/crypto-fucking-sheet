@@ -24,6 +24,15 @@ class SignIn extends React.Component {
                this.state.email, 
                this.state.password
             );
+            /*
+            .then(() => {
+                auth.onAuthStateChanged((userCredentials) => {
+                    userCredentials.getIdToken().then((token) => {
+                        console.log(`Token Id: ${token}`);
+                    });
+                });
+            });
+            */
             this.setState({ email: '', password: '' }); 
             this.props.history.push("/");
         } catch (error) {

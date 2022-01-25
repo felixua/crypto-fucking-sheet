@@ -7,6 +7,13 @@ export const selectUserCoins = createSelector(
     coins => coins.userCoins
 );
 
+export const selectSelectedCoin = createSelector(
+    [selectCoins],
+    coins => {
+        return coins.userCoins.find(coin => coin.selected === true);
+    }
+);
+
 export const selectUserCoinsShowRemove = createSelector(
     [selectCoins],
     coins => coins.showRemoveButton
