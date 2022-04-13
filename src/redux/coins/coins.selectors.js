@@ -10,7 +10,12 @@ export const selectUserCoins = createSelector(
 export const selectSelectedCoin = createSelector(
     [selectCoins],
     coins => {
-        return coins.userCoins.find(coin => coin.selected === true);
+        return coins.userCoins !== undefined ? coins.userCoins.find(coin => coin.selected === true) : 
+        {
+            coin: "", 
+            displayName: "",
+            user: ""
+        };
     }
 );
 
